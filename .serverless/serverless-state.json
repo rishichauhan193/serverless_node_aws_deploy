@@ -1,0 +1,101 @@
+{
+  "service": {
+    "service": "ec2-node-app",
+    "serviceObject": {
+      "name": "ec2-node-app"
+    },
+    "provider": {
+      "name": "aws",
+      "runtime": "nodejs22.x",
+      "region": "ap-south-1",
+      "iamRoleStatements": [
+        {
+          "Effect": "Allow",
+          "Action": [
+            "ec2:RunInstances",
+            "ec2:TerminateInstances",
+            "ec2:DescribeInstances",
+            "ec2:StartInstances",
+            "ec2:StopInstances"
+          ],
+          "Resource": "*"
+        }
+      ],
+      "stage": "dev",
+      "versionFunctions": true,
+      "compiledCloudFormationTemplate": {
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Description": "The AWS CloudFormation template for this Serverless application",
+        "Resources": {
+          "EC2Instance": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+              "ImageId": "ami-0e35ddab05955cf57",
+              "InstanceType": "t2.micro",
+              "KeyName": "New-2",
+              "SecurityGroups": [
+                "launch-wizard-3"
+              ],
+              "Tags": [
+                {
+                  "Key": "Name",
+                  "Value": "serverless-ec2-instance"
+                }
+              ]
+            }
+          }
+        },
+        "Outputs": {
+          "ServerlessDeploymentBucketName": {
+            "Value": "serverless-framework-deployments-ap-south-1-1d7913ca-9689",
+            "Export": {
+              "Name": "sls-ec2-node-app-dev-ServerlessDeploymentBucketName"
+            }
+          }
+        }
+      }
+    },
+    "pluginsData": {},
+    "functions": {},
+    "resources": {
+      "Resources": {
+        "EC2Instance": {
+          "Type": "AWS::EC2::Instance",
+          "Properties": {
+            "ImageId": "ami-0e35ddab05955cf57",
+            "InstanceType": "t2.micro",
+            "KeyName": "New-2",
+            "SecurityGroups": [
+              "launch-wizard-3"
+            ],
+            "Tags": [
+              {
+                "Key": "Name",
+                "Value": "serverless-ec2-instance"
+              }
+            ]
+          }
+        }
+      },
+      "Outputs": {}
+    },
+    "configValidationMode": "warn",
+    "serviceFilename": "serverless",
+    "initialServerlessConfig": {
+      "service": "ec2-node-app",
+      "provider": {
+        "$ref": "$[\"service\"][\"provider\"]"
+      },
+      "resources": {
+        "$ref": "$[\"service\"][\"resources\"]"
+      }
+    },
+    "appId": null,
+    "orgId": null,
+    "layers": {}
+  },
+  "package": {
+    "artifactDirectoryName": "serverless/ec2-node-app/dev/1743143146265-2025-03-28T06:25:46.265Z",
+    "artifact": ""
+  }
+}

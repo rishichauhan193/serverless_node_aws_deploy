@@ -1,0 +1,29 @@
+service: ec2-node-app
+
+provider:
+  name: aws
+  runtime: nodejs22.x
+  region: ap-south-1
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "ec2:RunInstances"
+        - "ec2:TerminateInstances"
+        - "ec2:DescribeInstances"
+        - "ec2:StartInstances"
+        - "ec2:StopInstances"
+      Resource: "*"
+
+resources:
+  Resources:
+    EC2Instance:
+      Type: AWS::EC2::Instance
+      Properties:
+        ImageId: ami-0e35ddab05955cf57  # Replace with your desired AMI ID
+        InstanceType: t2.micro
+        KeyName: New-2  # Replace with your key name
+        SecurityGroups:
+          - launch-wizard-3
+        Tags:
+          - Key: Name
+            Value: serverless-ec2-instance

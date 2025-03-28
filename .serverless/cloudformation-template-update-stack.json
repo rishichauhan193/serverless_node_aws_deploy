@@ -1,0 +1,31 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "The AWS CloudFormation template for this Serverless application",
+  "Resources": {
+    "EC2Instance": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-0e35ddab05955cf57",
+        "InstanceType": "t2.micro",
+        "KeyName": "New-2",
+        "SecurityGroups": [
+          "launch-wizard-3"
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "serverless-ec2-instance"
+          }
+        ]
+      }
+    }
+  },
+  "Outputs": {
+    "ServerlessDeploymentBucketName": {
+      "Value": "serverless-framework-deployments-ap-south-1-1d7913ca-9689",
+      "Export": {
+        "Name": "sls-ec2-node-app-dev-ServerlessDeploymentBucketName"
+      }
+    }
+  }
+}
